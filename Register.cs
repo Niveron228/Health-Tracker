@@ -88,7 +88,7 @@ namespace Project
                     ID INTEGER PRIMARY KEY AUTOINCREMENT,
                     Date DATE,
                     Weight NUMERIC,
-                    CardioType NUMERIC,
+                    CardioType VARCHAR,
                     Duration NUMERIC,
                     Distance NUMERIC,
                     CaloriesBurned NUMERIC
