@@ -22,7 +22,9 @@ namespace Project
             InitializeComponent();
             FormStyle.ButtonStyle(btShowProgress);
             FormStyle.ButtonStyle(btAddInfo);
+            FormStyle.ButtonStyle(btGoal);
             FormStyle.ButtonStyle(btExit);
+            FormStyle.ButtonStyle(btCheckGoals);
             FormStyle.ApplyGradient(this, Color.DarkBlue, Color.LightBlue);
         }
 
@@ -56,5 +58,22 @@ namespace Project
             FormStyle.FadeIn(this);
         }
 
+        private void btGoal_Click(object sender, EventArgs e)
+        {
+            FormStyle.FadeOut(this);
+            this.Hide();
+            AddGoal form = new AddGoal();
+            form.ShowDialog();
+            this.Close();
+        }
+
+        private void btCheckGoals_Click(object sender, EventArgs e)
+        {
+            FormStyle.FadeOut(this);
+            this.Hide();
+            CheckGoals form = new CheckGoals();
+            form.ShowDialog();
+            this.Close();
+        }
     }
 }

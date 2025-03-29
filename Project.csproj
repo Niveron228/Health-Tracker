@@ -66,12 +66,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddGoal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddGoal.Designer.cs">
+      <DependentUpon>AddGoal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddGoalClass.cs" />
     <Compile Include="CardioExercise.cs" />
     <Compile Include="AddInfo.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AddInfo.Designer.cs">
       <DependentUpon>AddInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CheckGoals.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CheckGoals.Designer.cs">
+      <DependentUpon>CheckGoals.cs</DependentUpon>
     </Compile>
     <Compile Include="FormStyle.cs" />
     <Compile Include="Menu.cs">
@@ -101,8 +114,14 @@
     <Compile Include="LiftingExercises.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddGoal.resx">
+      <DependentUpon>AddGoal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddInfo.resx">
       <DependentUpon>AddInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CheckGoals.resx">
+      <DependentUpon>CheckGoals.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>

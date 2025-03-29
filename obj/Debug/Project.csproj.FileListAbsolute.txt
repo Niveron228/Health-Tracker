@@ -21,3 +21,5 @@ C:\Users\artem\OneDrive\Desktop\rubbish\Project\Project\obj\Debug\Project.Menu.r
 C:\Users\artem\OneDrive\Desktop\rubbish\Project\Project\obj\Debug\Project.CheckInfo.resources
 C:\Users\artem\OneDrive\Desktop\rubbish\Project\Project\obj\Debug\Project.LogIn.resources
 C:\Users\artem\OneDrive\Desktop\rubbish\Project\Project\obj\Debug\Project.Register.resources
+C:\Users\artem\OneDrive\Desktop\rubbish\Project\Project\obj\Debug\Project.AddGoal.resources
+C:\Users\artem\OneDrive\Desktop\rubbish\Project\Project\obj\Debug\Project.CheckGoals.resources

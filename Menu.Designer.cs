@@ -32,6 +32,8 @@
             this.btShowProgress = new System.Windows.Forms.Button();
             this.btAddInfo = new System.Windows.Forms.Button();
             this.btExit = new System.Windows.Forms.Button();
+            this.btGoal = new System.Windows.Forms.Button();
+            this.btCheckGoals = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -48,7 +50,7 @@
             // btShowProgress
             // 
             this.btShowProgress.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btShowProgress.Location = new System.Drawing.Point(64, 247);
+            this.btShowProgress.Location = new System.Drawing.Point(64, 224);
             this.btShowProgress.Name = "btShowProgress";
             this.btShowProgress.Size = new System.Drawing.Size(346, 52);
             this.btShowProgress.TabIndex = 1;
@@ -70,7 +72,7 @@
             // btExit
             // 
             this.btExit.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btExit.Location = new System.Drawing.Point(64, 376);
+            this.btExit.Location = new System.Drawing.Point(64, 506);
             this.btExit.Name = "btExit";
             this.btExit.Size = new System.Drawing.Size(346, 51);
             this.btExit.TabIndex = 3;
@@ -78,12 +80,36 @@
             this.btExit.UseVisualStyleBackColor = true;
             this.btExit.Click += new System.EventHandler(this.btExit_Click);
             // 
+            // btGoal
+            // 
+            this.btGoal.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btGoal.Location = new System.Drawing.Point(64, 326);
+            this.btGoal.Name = "btGoal";
+            this.btGoal.Size = new System.Drawing.Size(346, 53);
+            this.btGoal.TabIndex = 4;
+            this.btGoal.Text = "Add goal";
+            this.btGoal.UseVisualStyleBackColor = true;
+            this.btGoal.Click += new System.EventHandler(this.btGoal_Click);
+            // 
+            // btCheckGoals
+            // 
+            this.btCheckGoals.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btCheckGoals.Location = new System.Drawing.Point(64, 419);
+            this.btCheckGoals.Name = "btCheckGoals";
+            this.btCheckGoals.Size = new System.Drawing.Size(346, 52);
+            this.btCheckGoals.TabIndex = 5;
+            this.btCheckGoals.Text = "Check goals";
+            this.btCheckGoals.UseVisualStyleBackColor = true;
+            this.btCheckGoals.Click += new System.EventHandler(this.btCheckGoals_Click);
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(479, 489);
+            this.ClientSize = new System.Drawing.Size(479, 604);
+            this.Controls.Add(this.btCheckGoals);
+            this.Controls.Add(this.btGoal);
             this.Controls.Add(this.btExit);
             this.Controls.Add(this.btAddInfo);
             this.Controls.Add(this.btShowProgress);
@@ -103,5 +129,7 @@
         private System.Windows.Forms.Button btShowProgress;
         private System.Windows.Forms.Button btAddInfo;
         private System.Windows.Forms.Button btExit;
+        private System.Windows.Forms.Button btGoal;
+        private System.Windows.Forms.Button btCheckGoals;
     }
 }

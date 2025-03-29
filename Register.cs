@@ -38,6 +38,13 @@ namespace Project
                 return;
             }
 
+            if (password.Length < 6)
+            {
+                MessageBox.Show("Password length must be more than 6 symbols!");
+                tbpassword.Text = null;
+                return;
+            }
+
             if (!IsValidEmail(email))
             {
                 MessageBox.Show("Invalid email format!");
@@ -102,6 +109,12 @@ namespace Project
                     Reps NUMERIC,
                     RestTime NUMERIC,
                     Muscle TEXT
+                );
+                CREATE TABLE IF NOT EXISTS {userName}_Goals (
+                    ID INTEGER PRIMARY KEY AUTOINCREMENT,
+                    firstParam TEXT,
+                    secondParam NUMERIC,
+                    type TEXT
                 );";
 
                         using (SQLiteCommand cmd = new SQLiteCommand(tableQuery, conn))
