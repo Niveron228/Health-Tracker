@@ -25,16 +25,21 @@ namespace Project
             pbComplete.Visible = false;
             Load += async (sender, e) =>
             {
-                await checkGoals();
+                await loadGoalsTable();
             };
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.ReadOnly = true;
             dataGridStyle();
+            dataGridView1.AllowUserToAddRows = false;
+
 
         }
 
+        public string type = null, goal = null;
+        public int param = 0, barValue = 0;
 
-        private async Task checkGoals()
+
+        private async Task loadGoalsTable()
         {
             using (var connection = new SQLiteConnection("Data Source=C:\\Users\\artem\\OneDrive\\Desktop\\rubbish\\Project\\HealthTracker.db;Version=3;"))
             {
@@ -77,7 +82,7 @@ namespace Project
             {
                 int selectedGoalId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["id"].Value);
                 await deleteGoalFromTable(selectedGoalId);
-                await checkGoals();
+                await loadGoalsTable();
                 lblComplete.Visible = false;
                 chbDelete.Visible = false;
                 pbComplete.Visible = false;
@@ -109,9 +114,9 @@ namespace Project
         {
             if (dataGridView1.SelectedRows.Count != 0)
             {
-                string param = (dataGridView1.SelectedRows[0].Cells[1].Value).ToString();
+                string goal = (dataGridView1.SelectedRows[0].Cells[2].Value).ToString();
 
-                switch (param) 
+                switch (goal) 
                 {
                     case "Work weight":
                         await checkWorkWeight();
@@ -129,94 +134,53 @@ namespace Project
                         await checkDistance();
                         break;
 
-                    case "Callories burned":
+                    case "Calories burned":
                         await checkCaloriesBurned();
                         break;
+
                 }
 
-                      
+
             }
         }
+
 
         private async Task checkWorkWeight()
         {
             chbDelete.Visible = false;
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                lblComplete.Visible = true;
-                pbComplete.Visible = true;
-                string param = (dataGridView1.SelectedRows[0].Cells[1].Value).ToString();
-                int goal = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[2].Value);
-                string type = (dataGridView1.SelectedRows[0].Cells[3].Value).ToString();
+
+                readGoalsCells();
 
                 int workWeight = await searchMaxGoal("WorkWeight", $"{LogIn.userName}_Lifting");
 
-                int barValue = (workWeight * 100) / goal;
+                int barValue = (workWeight * 100) / param;
 
                 await Task.Delay(100);
 
-                if (barValue >= 100)
-                {
-                    pbComplete.Value = 100;
-                }
-                else if (barValue > 0)
-                {
-                    pbComplete.Value = barValue;
-                }
-                else
-                {
-                    pbComplete.Value = 0;
-                }
-
-
-
-                lblComplete.Text = $"Completed {pbComplete.Value} %";
-
-                if(pbComplete.Value == 100)
-                {
-                    chbDelete.Visible = true;
-                }
+                barValueProviding(barValue);
+                itemsVisibilityOn();
             }
         }
+
 
         private async Task checkMaxWeight()
         {
             chbDelete.Visible = false;
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                lblComplete.Visible = true;
-                pbComplete.Visible = true;
-                string param = (dataGridView1.SelectedRows[0].Cells[1].Value).ToString();
-                int goal = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[2].Value);
-                string type = (dataGridView1.SelectedRows[0].Cells[3].Value).ToString();
+
+                readGoalsCells();
 
                 int maxWeight = await searchMaxGoal("MaxWeight", $"{LogIn.userName}_Lifting");
 
-                int barValue = (maxWeight * 100) / goal;
+                int barValue = (maxWeight * 100) / param;
 
                 await Task.Delay(100);
 
-                if (barValue >= 100)
-                {
-                    pbComplete.Value = 100;
-                }
-                else if (barValue > 0)
-                {
-                    pbComplete.Value = barValue;
-                }
-                else
-                {
-                    pbComplete.Value = 0;
-                }
-
-
-
-                lblComplete.Text = $"Completed {pbComplete.Value} %";
-
-                if (pbComplete.Value == 100)
-                {
-                    chbDelete.Visible = true;
-                }
+                barValueProviding(barValue);
+                itemsVisibilityOn();
             }
         }
 
@@ -225,40 +189,18 @@ namespace Project
             chbDelete.Visible = false;
             if (dataGridView1.SelectedRows.Count != 0)
             {
-                lblComplete.Visible = true;
-                pbComplete.Visible = true;
-                string param = (dataGridView1.SelectedRows[0].Cells[1].Value).ToString();
-                int goal = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[2].Value);
-                string type = (dataGridView1.SelectedRows[0].Cells[3].Value).ToString();
+                itemsVisibilityOn();
+
+                readGoalsCells();
 
                 int duration = await searchMaxGoal("Duration", $"{LogIn.userName}_Cardio");
 
 
-                int barValue = (duration * 100) / goal;
+                int barValue = (duration * 100) / param;
 
                 await Task.Delay(100);
 
-                if (barValue >= 100)
-                {
-                    pbComplete.Value = 100;
-                }
-                else if (barValue > 0)
-                {
-                    pbComplete.Value = barValue;
-                }
-                else
-                {
-                    pbComplete.Value = 0;
-                }
-
-
-                lblComplete.Text = $"Completed {pbComplete.Value} %";
-
-
-                if (pbComplete.Value == 100)
-                {
-                    chbDelete.Visible = true;
-                }
+                barValueProviding(barValue);
             }
         }
 
@@ -267,39 +209,18 @@ namespace Project
             chbDelete.Visible = false;
             if (dataGridView1.SelectedRows.Count != 0)
             {
-                lblComplete.Visible = true;
-                pbComplete.Visible = true;
-                string param = (dataGridView1.SelectedRows[0].Cells[1].Value).ToString();
-                int goal = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[2].Value);
-                string type = (dataGridView1.SelectedRows[0].Cells[3].Value).ToString();
+
+                readGoalsCells();
 
                 int distance = await searchMaxGoal("Distance", $"{LogIn.userName}_Cardio");
 
 
-                int barValue = (distance * 100) / goal;
+                int barValue = (distance * 100) / param;
 
                 await Task.Delay(100);
 
-                if (barValue >= 100)
-                {
-                    pbComplete.Value = 100;
-                }
-                else if (barValue > 0)
-                {
-                    pbComplete.Value = barValue;
-                }
-                else
-                {
-                    pbComplete.Value = 0;
-                }
-
-
-                lblComplete.Text = $"Completed {pbComplete.Value} %";
-
-                if (pbComplete.Value == 100)
-                {
-                    chbDelete.Visible = true;
-                }
+                barValueProviding(barValue);
+                itemsVisibilityOn();
             }
         }
 
@@ -308,40 +229,58 @@ namespace Project
             chbDelete.Visible = false;
             if (dataGridView1.SelectedRows.Count != 0)
             {
-                lblComplete.Visible = true;
-                pbComplete.Visible = true;
-                string param = (dataGridView1.SelectedRows[0].Cells[1].Value).ToString();
-                int goal = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[2].Value);
-                string type = (dataGridView1.SelectedRows[0].Cells[3].Value).ToString();
+
+                readGoalsCells();
 
                 int caloriesBurned = await searchMaxGoal("CaloriesBurned", $"{LogIn.userName}_Cardio");
 
 
-                int barValue = (caloriesBurned * 100) / goal;
+                int barValue = (caloriesBurned * 100) / param;
 
                 await Task.Delay(100);
 
-                if (barValue >= 100)
-                {
-                    pbComplete.Value = 100;
-                }
-                else if (barValue > 0)
-                {
-                    pbComplete.Value = barValue;
-                }
-                else
-                {
-                    pbComplete.Value = 0;
-                }
+                barValueProviding(barValue);
+                itemsVisibilityOn();
+
+            }
+        }
+
+        private void itemsVisibilityOn()
+        {
+            lblComplete.Visible = true;
+            pbComplete.Visible = true;
+        }
+
+        private void readGoalsCells()
+        {
+            type = (dataGridView1.SelectedRows[0].Cells[1].Value).ToString();
+            goal = (dataGridView1.SelectedRows[0].Cells[2].Value).ToString();
+            param = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[3].Value);
+        }
 
 
-                lblComplete.Text = $"Completed {pbComplete.Value} %";
+
+        private void barValueProviding(int barValue)
+        {
+            if (barValue >= 100)
+            {
+                pbComplete.Value = 100;
+            }
+            else if (barValue > 0)
+            {
+                pbComplete.Value = barValue;
+            }
+            else
+            {
+                pbComplete.Value = 0;
+            }
 
 
-                if (pbComplete.Value == 100)
-                {
-                    chbDelete.Visible = true;
-                }
+            lblComplete.Text = $"Completed {pbComplete.Value} %";
+
+            if (pbComplete.Value == 100)
+            {
+                chbDelete.Visible = true;
             }
         }
 
@@ -367,5 +306,7 @@ namespace Project
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(41, 39, 40);
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
         }
+
+
     }
 }

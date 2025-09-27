@@ -8,13 +8,13 @@ namespace Project
 {
     class AddGoalClass
     {
-        public string firstParam {  get; set; }
-        public int secondParam { get; set; }
+        public string goal {  get; set; }
+        public int parameter { get; set; }
 
-        public AddGoalClass(string firstParam, int secondParam)
+        public AddGoalClass(string goal, int parameter)
         {
-            this.firstParam = firstParam;
-            this.secondParam = secondParam;
+            this.goal = goal;
+            this.parameter = parameter;
         }
     }
 }

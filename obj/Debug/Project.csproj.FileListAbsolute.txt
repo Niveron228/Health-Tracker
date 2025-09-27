@@ -23,3 +23,14 @@ C:\Users\artem\OneDrive\Desktop\rubbish\Project\Project\obj\Debug\Project.LogIn.
 C:\Users\artem\OneDrive\Desktop\rubbish\Project\Project\obj\Debug\Project.Register.resources
 C:\Users\artem\OneDrive\Desktop\rubbish\Project\Project\obj\Debug\Project.AddGoal.resources
 C:\Users\artem\OneDrive\Desktop\rubbish\Project\Project\obj\Debug\Project.CheckGoals.resources
+C:\Users\artem\OneDrive\Desktop\rubbish\Project\Project\bin\Debug\SQLitePCLRaw.batteries_v2.dll
+C:\Users\artem\OneDrive\Desktop\rubbish\Project\Project\bin\Debug\SQLitePCLRaw.core.dll
+C:\Users\artem\OneDrive\Desktop\rubbish\Project\Project\bin\Debug\SQLitePCLRaw.provider.dynamic_cdecl.dll
+C:\Users\artem\OneDrive\Desktop\rubbish\Project\Project\bin\Debug\System.Buffers.dll
+C:\Users\artem\OneDrive\Desktop\rubbish\Project\Project\bin\Debug\System.Memory.dll
+C:\Users\artem\OneDrive\Desktop\rubbish\Project\Project\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\artem\OneDrive\Desktop\rubbish\Project\Project\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\artem\OneDrive\Desktop\rubbish\Project\Project\bin\Debug\System.Buffers.xml
+C:\Users\artem\OneDrive\Desktop\rubbish\Project\Project\bin\Debug\System.Memory.xml
+C:\Users\artem\OneDrive\Desktop\rubbish\Project\Project\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\artem\OneDrive\Desktop\rubbish\Project\Project\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml

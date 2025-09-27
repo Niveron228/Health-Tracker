@@ -56,7 +56,7 @@ namespace Project
 
         private async Task LoadData(string tableName, DataGridView gridView)
         {
-            using (var connection = new SQLiteConnection("Data Source=C:\\Users\\artem\\OneDrive\\Desktop\\rubbish\\Project\\HealthTracker.db;Version=3;"))
+            using (var connection = new SQLiteConnection(DataBase.connectionString))
             {
                 await connection.OpenAsync();
 

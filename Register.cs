@@ -15,7 +15,6 @@ namespace Project
 {
     public partial class Register : Form
     {
-        private string connectionString = "Data Source=C:\\Users\\artem\\OneDrive\\Desktop\\rubbish\\Project\\HealthTracker.db;Version=3;";
         public Register()
         {
             FormStyle.FadeIn(this);
@@ -47,104 +46,52 @@ namespace Project
 
             if (!IsValidEmail(email))
             {
-                MessageBox.Show("Invalid email format!");
+                MessageBox.Show("Incorrect email format!");
                 return;
             }
 
-            string hashedPassword = HashPassword(password);
-
-            using (SQLiteConnection conn = new SQLiteConnection(connectionString))
+            using (SQLiteConnection conn = new SQLiteConnection(DataBase.connectionString))
             {
-                await conn.OpenAsync();
-                string query = "INSERT INTO UserInfo (UserName, Password, Email) VALUES (@UserName, @Password, @Email)";
-                using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
+                try
                 {
-                    cmd.Parameters.AddWithValue("@UserName", login);
-                    cmd.Parameters.AddWithValue("@Password", hashedPassword);
-                    cmd.Parameters.AddWithValue("@Email", email);
+                    await conn.OpenAsync();
 
-                    try
+                    string checkQuery = "SELECT COUNT(*) FROM UserInfo WHERE UserName = @UserName";
+                    using (SQLiteCommand cmd = new SQLiteCommand(checkQuery, conn))
                     {
-                        cmd.ExecuteNonQuery();
-                        MessageBox.Show("Account created successfully!");
+                        cmd.Parameters.AddWithValue("@UserName", login);
+                        long count = (long)await cmd.ExecuteScalarAsync();
 
-                       
-                        CreateUserTable(login);
+                        if (count > 0)
+                        {
+                            MessageBox.Show("Account with this login already exist!");
+                            return;
+                        }
+                    }
+
+                    string hashedPassword = DataBase.HashPassword(password);
+                    string insertQuery = "INSERT INTO UserInfo (UserName, Password, Email) VALUES (@UserName, @Password, @Email)";
+                    using (SQLiteCommand cmd = new SQLiteCommand(insertQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@UserName", login);
+                        cmd.Parameters.AddWithValue("@Password", hashedPassword);
+                        cmd.Parameters.AddWithValue("@Email", email);
+
+                        await cmd.ExecuteNonQueryAsync();
+                        MessageBox.Show("Account created!");
+
+                        DataBase.CreateUserTable(login);
+
                         btBack_Click(sender, e);
                     }
-                    catch (SQLiteException ex)
-                    {
-                        MessageBox.Show("Error: user already exists." + ex.Message);
-                    }
                 }
-            }
-        }
-
-        private void CreateUserTable(string userName)
-        {
-            using (SQLiteConnection conn = new SQLiteConnection(connectionString))
-            {
-                conn.Open();
-
-                using (var transaction = conn.BeginTransaction())
+                catch (Exception ex)
                 {
-                    try
-                    {
-                        string tableQuery = $@"
-                CREATE TABLE IF NOT EXISTS {userName}_Cardio (
-                    ID INTEGER PRIMARY KEY AUTOINCREMENT,
-                    Date DATE,
-                    Weight NUMERIC,
-                    CardioType VARCHAR,
-                    Duration NUMERIC,
-                    Distance NUMERIC,
-                    CaloriesBurned NUMERIC
-                );
-                CREATE TABLE IF NOT EXISTS {userName}_Lifting (
-                    ID INTEGER PRIMARY KEY AUTOINCREMENT,
-                    Date DATE,
-                    Weight NUMERIC,
-                    WorkWeight NUMERIC,
-                    MaxWeight NUMERIC,
-                    Reps NUMERIC,
-                    RestTime NUMERIC,
-                    Muscle TEXT
-                );
-                CREATE TABLE IF NOT EXISTS {userName}_Goals (
-                    ID INTEGER PRIMARY KEY AUTOINCREMENT,
-                    firstParam TEXT,
-                    secondParam NUMERIC,
-                    type TEXT
-                );";
-
-                        using (SQLiteCommand cmd = new SQLiteCommand(tableQuery, conn))
-                        {
-                            cmd.ExecuteNonQuery();
-                        }
-                        transaction.Commit();
-                    }
-                    catch (Exception ex)
-                    {
-                        transaction.Rollback();
-                        MessageBox.Show($"Error creating tables: {ex.Message}");
-                    }
+                    MessageBox.Show("Сталася помилка: " + ex.Message);
                 }
             }
         }
 
-        private string HashPassword(string password)
-        {
-            using (SHA256 sha256 = SHA256.Create())
-            {
-                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-                StringBuilder builder = new StringBuilder();
-                foreach (byte b in bytes)
-                {
-                    builder.Append(b.ToString("x2"));
-                }
-                return builder.ToString();
-            }
-        }
 
         private void btBack_Click(object sender, EventArgs e)
         {

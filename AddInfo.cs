@@ -172,7 +172,7 @@ namespace Project
 
         private async Task SaveCardioExerciseToDatabase(CardioExercise cardio)
         {
-            using (var connection = new SQLiteConnection("Data Source=C:\\Users\\artem\\OneDrive\\Desktop\\rubbish\\Project\\HealthTracker.db;Version=3;"))
+            using (var connection = new SQLiteConnection(DataBase.connectionString))
             {
                 await connection.OpenAsync();
                 string query = $"INSERT INTO {LogIn.userName}_Cardio (Date, Weight, CardioType, Duration, Distance, CaloriesBurned) " +
@@ -195,7 +195,7 @@ namespace Project
 
         private async Task SaveLiftingExerciseToDatabase(LiftingExercise lifting)
         {
-            using (var connection = new SQLiteConnection("Data Source=C:\\Users\\artem\\OneDrive\\Desktop\\rubbish\\Project\\HealthTracker.db;Version=3;"))
+            using (var connection = new SQLiteConnection(DataBase.connectionString))
             {
                 await connection.OpenAsync();
 

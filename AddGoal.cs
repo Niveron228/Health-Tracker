@@ -13,6 +13,7 @@ namespace Project
 {
     public partial class AddGoal : Form
     {
+        public string connectionString = DataBase.connectionString;
         public AddGoal()
         {
             FormStyle.FadeIn(this);
@@ -58,18 +59,18 @@ namespace Project
 
             AddGoalClass liftingGoal = new AddGoalClass(cbLiftingType.Text, Convert.ToInt32(tbLiftingParam.Text));
 
-            using (var connection = new SQLiteConnection("Data Source=C:\\Users\\artem\\OneDrive\\Desktop\\rubbish\\Project\\HealthTracker.db;Version=3;"))
+            using (var connection = new SQLiteConnection(connectionString))
             {
                 try
                 {
                     await connection.OpenAsync();
-                    string query = $"INSERT INTO {LogIn.userName}_Goals (firstParam, secondParam, type) VALUES (@firstParam, @secondParam, @type)";
+                    string query = $"INSERT INTO {LogIn.userName}_Goals (type, goal, parameter) VALUES (@type, @goal, @parameter)";
 
                     using (var cmd = new SQLiteCommand(query, connection))
                     {
-                        cmd.Parameters.AddWithValue("@firstParam", liftingGoal.firstParam);
-                        cmd.Parameters.AddWithValue("@secondParam", liftingGoal.secondParam);
                         cmd.Parameters.AddWithValue("@type", "Lifting");
+                        cmd.Parameters.AddWithValue("@goal", liftingGoal.goal);
+                        cmd.Parameters.AddWithValue("@parameter", liftingGoal.parameter);
 
                         await cmd.ExecuteNonQueryAsync();
                     }
@@ -89,18 +90,18 @@ namespace Project
 
             AddGoalClass cardioGoal = new AddGoalClass(cbCardioType.Text, Convert.ToInt32(tbCardioParam.Text));
 
-            using (var connection = new SQLiteConnection("Data Source=C:\\Users\\artem\\OneDrive\\Desktop\\rubbish\\Project\\HealthTracker.db;Version=3;"))
+            using (var connection = new SQLiteConnection(connectionString))
             {
                 try
                 {
                     await connection.OpenAsync();
-                    string query = $"INSERT INTO {LogIn.userName}_Goals (firstParam, secondParam, type) VALUES (@firstParam, @secondParam, @type)";
+                    string query = $"INSERT INTO {LogIn.userName}_Goals (type, goal, parameter) VALUES (@type, @goal, @parameter)";
 
                     using (var cmd = new SQLiteCommand(query, connection))
                     {
-                        cmd.Parameters.AddWithValue("@firstParam", cardioGoal.firstParam);
-                        cmd.Parameters.AddWithValue("@secondParam", cardioGoal.secondParam);
                         cmd.Parameters.AddWithValue("@type", "Cardio");
+                        cmd.Parameters.AddWithValue("@goal", cardioGoal.goal);
+                        cmd.Parameters.AddWithValue("@parameter", cardioGoal.parameter);
 
                         await cmd.ExecuteNonQueryAsync();
                     }

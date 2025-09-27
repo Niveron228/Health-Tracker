@@ -23,7 +23,7 @@ namespace Project
 
 
         public static string userName = "";
-        private string connectionString = "Data Source=C:\\Users\\artem\\OneDrive\\Desktop\\rubbish\\Project\\HealthTracker.db;Version=3;";
+        private string connectionString = DataBase.connectionString;
         private int incorrectPasswordCounter=1;
         public LogIn()
         {
@@ -74,7 +74,7 @@ namespace Project
                     if (result != null)
                     {
                         string storedHash = result.ToString();
-                        string enteredHash = HashPassword(password);
+                        string enteredHash = DataBase.HashPassword(password);
 
                         if (storedHash == enteredHash)
                         {
@@ -102,20 +102,6 @@ namespace Project
                         MessageBox.Show("User does not exist!");
                     }
                 }
-            }
-        }
-
-        private string HashPassword(string password)
-        {
-            using (SHA256 sha256 = SHA256.Create())
-            {
-                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-                StringBuilder builder = new StringBuilder();
-                foreach (byte b in bytes)
-                {
-                    builder.Append(b.ToString("x2"));
-                }
-                return builder.ToString();
             }
         }
 
