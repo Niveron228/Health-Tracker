@@ -65,6 +65,9 @@ namespace Project
             switch (cbexercise.SelectedItem.ToString())
             {
                 case "Cardio":
+                    cbmuscle.Enabled = false;
+                    cbmuscle.Visible = false;
+                    lblmuscle.Visible = false;
                     groupBox1.Enabled = true;
                     lblmodeinfo01.Text = "Type of cardio:";
                     lblmodeinfo02.Text = "Duration:";
@@ -77,6 +80,7 @@ namespace Project
                     groupBox1.Enabled = false;
                     lblmuscle.Visible = true;
                     cbmuscle.Visible = true;
+                    cbmuscle.Enabled = true;
                     liftingExercise();
                     lblmode.Text = "Muscle";
                     break;
@@ -174,6 +178,7 @@ namespace Project
                 tbinfo03.Text = "";
                 tbinfo04.Text = "";
                 cbexercise.SelectedIndex = -1;
+                cbmuscle.SelectedIndex = -1;
             }
             else
             {
@@ -191,6 +196,10 @@ namespace Project
                 tbinfo03.Text = "";
                 tbinfo04.Text = "";
                 cbexercise.SelectedIndex = -1;
+                cbmuscle.Visible = false;
+                lblmuscle.Visible=false;
+                cbmuscle.SelectedIndex = -1;
+                lblmode.Text = "MODE";
             }
         }
 
