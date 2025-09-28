@@ -8,6 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LiveCharts;
+using LiveCharts.WinForms;
+using LiveCharts.Wpf;
 
 namespace Project
 {
@@ -24,12 +27,24 @@ namespace Project
             FormStyle.ApplyGradient(this, Color.DarkBlue, Color.LightBlue);
             gbLifting.Enabled = false;
             gbCardio.Enabled = false;
+
+            btAddLifting.FlatStyle = FlatStyle.Flat;
+            btAddLifting.BackColor = Color.FromArgb(52, 152, 219); // основний колір
+            btAddLifting.ForeColor = Color.White;
+            btAddLifting.FlatAppearance.BorderSize = 0;
+
+            btAddLifting.MouseEnter += (s, e) => { btAddLifting.BackColor = Color.FromArgb(41, 128, 185); };
+            btAddLifting.MouseLeave += (s, e) => { btAddLifting.BackColor = Color.FromArgb(52, 152, 219); };
+
         }
+
 
         private async void btAddLifting_Click(object sender, EventArgs e)
         {
             await AddLiftingGoal();
         }
+
+
     
 
         private void cbType_SelectedIndexChanged(object sender, EventArgs e)

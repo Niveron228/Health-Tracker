@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btsend = new System.Windows.Forms.Button();
             this.lbldate = new System.Windows.Forms.Label();
             this.lblweight = new System.Windows.Forms.Label();
@@ -48,6 +49,9 @@
             this.btexit = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.btback = new System.Windows.Forms.Button();
+            this.lblmuscle = new System.Windows.Forms.Label();
+            this.cbmuscle = new System.Windows.Forms.ComboBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,7 +72,7 @@
             this.lbldate.BackColor = System.Drawing.Color.Transparent;
             this.lbldate.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.lbldate.ForeColor = System.Drawing.Color.Black;
-            this.lbldate.Location = new System.Drawing.Point(54, 253);
+            this.lbldate.Location = new System.Drawing.Point(161, 203);
             this.lbldate.Name = "lbldate";
             this.lbldate.Size = new System.Drawing.Size(75, 25);
             this.lbldate.TabIndex = 2;
@@ -80,11 +84,11 @@
             this.lblweight.BackColor = System.Drawing.Color.Transparent;
             this.lblweight.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.lblweight.ForeColor = System.Drawing.Color.Black;
-            this.lblweight.Location = new System.Drawing.Point(683, 209);
+            this.lblweight.Location = new System.Drawing.Point(698, 203);
             this.lblweight.Name = "lblweight";
-            this.lblweight.Size = new System.Drawing.Size(105, 25);
+            this.lblweight.Size = new System.Drawing.Size(163, 25);
             this.lblweight.TabIndex = 3;
-            this.lblweight.Text = "Weight:";
+            this.lblweight.Text = "Your weight:";
             // 
             // label6
             // 
@@ -92,7 +96,7 @@
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(425, 86);
+            this.label6.Location = new System.Drawing.Point(434, 87);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(100, 25);
             this.label6.TabIndex = 6;
@@ -102,7 +106,7 @@
             // 
             this.tbdate.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.tbdate.ForeColor = System.Drawing.Color.Black;
-            this.tbdate.Location = new System.Drawing.Point(194, 253);
+            this.tbdate.Location = new System.Drawing.Point(135, 256);
             this.tbdate.Multiline = true;
             this.tbdate.Name = "tbdate";
             this.tbdate.Size = new System.Drawing.Size(130, 25);
@@ -112,7 +116,7 @@
             // 
             this.tbweight.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.tbweight.ForeColor = System.Drawing.Color.Black;
-            this.tbweight.Location = new System.Drawing.Point(724, 269);
+            this.tbweight.Location = new System.Drawing.Point(714, 256);
             this.tbweight.Multiline = true;
             this.tbweight.Name = "tbweight";
             this.tbweight.Size = new System.Drawing.Size(130, 25);
@@ -125,11 +129,7 @@
             this.cbexercise.FormattingEnabled = true;
             this.cbexercise.Items.AddRange(new object[] {
             "Cardio",
-            "Biceps",
-            "Triceps",
-            "Back",
-            "Shoulders",
-            "Chest"});
+            "Lifting"});
             this.cbexercise.Location = new System.Drawing.Point(387, 127);
             this.cbexercise.Name = "cbexercise";
             this.cbexercise.Size = new System.Drawing.Size(188, 33);
@@ -284,12 +284,41 @@
             this.btback.UseVisualStyleBackColor = true;
             this.btback.Click += new System.EventHandler(this.btback_Click);
             // 
+            // lblmuscle
+            // 
+            this.lblmuscle.AutoSize = true;
+            this.lblmuscle.BackColor = System.Drawing.Color.Transparent;
+            this.lblmuscle.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblmuscle.Location = new System.Drawing.Point(434, 203);
+            this.lblmuscle.Name = "lblmuscle";
+            this.lblmuscle.Size = new System.Drawing.Size(100, 25);
+            this.lblmuscle.TabIndex = 16;
+            this.lblmuscle.Text = "Muscle:";
+            // 
+            // cbmuscle
+            // 
+            this.cbmuscle.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.cbmuscle.FormattingEnabled = true;
+            this.cbmuscle.Items.AddRange(new object[] {
+            "Biceps",
+            "Triceps",
+            "Back",
+            "Shoulders",
+            "Chest"});
+            this.cbmuscle.Location = new System.Drawing.Point(400, 255);
+            this.cbmuscle.Name = "cbmuscle";
+            this.cbmuscle.Size = new System.Drawing.Size(175, 26);
+            this.cbmuscle.TabIndex = 17;
+            this.cbmuscle.SelectedIndexChanged += new System.EventHandler(this.cbmuscle_SelectedIndexChanged);
+            // 
             // AddInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(980, 840);
+            this.Controls.Add(this.cbmuscle);
+            this.Controls.Add(this.lblmuscle);
             this.Controls.Add(this.btback);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btexit);
@@ -332,6 +361,9 @@
         private System.Windows.Forms.Label lblmodeinfo04;
         private System.Windows.Forms.Label lblmodeinfo03;
         private System.Windows.Forms.Button btback;
+        private System.Windows.Forms.Label lblmuscle;
+        private System.Windows.Forms.ComboBox cbmuscle;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 

@@ -17,15 +17,29 @@ namespace Project
 {
     public partial class AddInfo : Form
     {
+
+        public ToolTip tooltip = new ToolTip();
         public AddInfo()
         {
             FormStyle.FadeIn(this);
             InitializeComponent();
-            groupBox1.Visible = false;
+            cbexercise.SelectedItem = "Biceps";
             FormStyle.ApplyGradient(this, Color.DarkBlue, Color.LightBlue);
             FormStyle.ButtonStyle(btsend);
             FormStyle.ButtonStyle(btexit);
             FormStyle.ButtonStyle(btback);
+            lblmuscle.Visible = false;
+            cbmuscle.Visible = false;
+            groupBox1.Enabled = false;
+            tbdate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+
+            tooltip = new ToolTip();
+            tooltip.IsBalloon = true;
+            tooltip.ToolTipIcon = ToolTipIcon.Warning;
+            tooltip.ToolTipTitle = "Input required";
+
+
+
         }
 
         private void btsend_Click(object sender, EventArgs e)
@@ -38,6 +52,7 @@ namespace Project
             tbinfo03.Text = "";
             tbinfo04.Text = "";
             cbexercise.SelectedIndex = -1;
+            tbdate.Text = DateTime.Now.ToString("yyyy-MM-dd");
 
         }
 
@@ -57,42 +72,20 @@ namespace Project
             switch (cbexercise.SelectedItem.ToString())
             {
                 case "Cardio":
+                    groupBox1.Enabled = true;
                     lblmodeinfo01.Text = "Type of cardio:";
                     lblmodeinfo02.Text = "Duration:";
                     lblmodeinfo03.Text = "Distance:";
                     lblmodeinfo04.Text = "Calories burned:";
-                    groupBox1.Visible = true;
                     lblmode.Text = "Cardio";
                     break;
 
-                case "Biceps":
-                    groupBox1.Visible = true;
+                case "Lifting":
+                    groupBox1.Enabled = false;
+                    lblmuscle.Visible = true;
+                    cbmuscle.Visible = true;
                     liftingExercise();
-                    lblmode.Text = "Biceps";
-                    break;
-
-                case "Triceps":
-                    groupBox1.Visible = true;
-                    liftingExercise();
-                    lblmode.Text = "Triceps";
-                    break;
-
-                case "Chest":
-                    groupBox1.Visible = true;
-                    liftingExercise();
-                    lblmode.Text = "Chest";
-                    break;
-
-                case "Back":
-                    groupBox1.Visible = true;
-                    liftingExercise();
-                    lblmode.Text = "Back";
-                    break;
-
-                case "Shoulders":
-                    groupBox1.Visible = true;
-                    liftingExercise();
-                    lblmode.Text = "Shoulders";
+                    lblmode.Text = "Muscle";
                     break;
 
                 default:
@@ -104,7 +97,7 @@ namespace Project
 
             }
 
-        void liftingExercise()
+            void liftingExercise()
             {
                 lblmodeinfo01.Text = "Working weight:";
                 lblmodeinfo02.Text = "Max weight:";
@@ -118,42 +111,67 @@ namespace Project
             exerciseMode();
         }
 
+        private ToolTip tbDateTip = new ToolTip();
+        private ToolTip tbWeightTip = new ToolTip();
+        private ToolTip tbInfo01Tip = new ToolTip();
+        private ToolTip tbInfo02Tip = new ToolTip();
+        private ToolTip tbInfo03Tip = new ToolTip();
+        private ToolTip tbInfo04Tip = new ToolTip();
+
+
         private async void addExercise()
         {
-            DateTime date;
-            if (!DateTime.TryParse(tbdate.Text, out date) || string.IsNullOrWhiteSpace(tbweight.Text) ||
-                string.IsNullOrWhiteSpace(tbinfo01.Text) || string.IsNullOrWhiteSpace(tbinfo02.Text) ||
-                string.IsNullOrWhiteSpace(tbinfo03.Text) || string.IsNullOrWhiteSpace(tbinfo04.Text))
+            var fields = new Dictionary<TextBox, string>
+    {
+        { tbdate, "Enter date!" },
+        { tbweight, "Enter weight!" },
+        { tbinfo01, "Enter value!" },
+        { tbinfo02, "Enter value!" },
+        { tbinfo03, "Enter value!" },
+        { tbinfo04, "Enter value!" }
+    };
+
+            bool hasEmptyField = false;
+
+            foreach (var kvp in fields)
             {
-                MessageBox.Show("Please, enter all parameters!");
+                if (string.IsNullOrWhiteSpace(kvp.Key.Text))
+                {
+                    ToolTip tip = new ToolTip();
+                    tip.IsBalloon = true;
+                    tip.ToolTipIcon = ToolTipIcon.Warning;
+                    tip.ToolTipTitle = "Input required";
+                    tip.Show(kvp.Value, kvp.Key, kvp.Key.Width - 20, -55, 4000);
+                    hasEmptyField = true;
+                }
+            }
+
+            if (hasEmptyField) return;
+
+            if (!DateTime.TryParse(tbdate.Text, out DateTime date))
+            {
+                ToolTip tip = new ToolTip();
+                tip.IsBalloon = true;
+                tip.ToolTipIcon = ToolTipIcon.Warning;
+                tip.ToolTipTitle = "Input required";
+                tip.Show("Enter a valid date!", tbdate, tbdate.Width + 110, -65, 4000);
                 return;
             }
 
-            string weight = tbweight.Text;
+            if (!double.TryParse(tbweight.Text, out double parsedWeight) ||
+                !double.TryParse(tbinfo02.Text, out double parsedInfo02) ||
+                !double.TryParse(tbinfo03.Text, out double parsedInfo03) ||
+                !double.TryParse(tbinfo04.Text, out double parsedInfo04))
+            {
+                MessageBox.Show("Incorrect numeric parameters!");
+                return;
+            }
+
             string info01 = tbinfo01.Text;
-            string info02 = tbinfo02.Text;
-            string info03 = tbinfo03.Text;
-            string info04 = tbinfo04.Text;
             string muscle = lblmode.Text;
 
-
-            if (!double.TryParse(weight, out double parsedWeight) ||
-                !double.TryParse(info02, out double parsedInfo02) ||
-                !double.TryParse(info03, out double parsedInfo03) ||
-                !double.TryParse(info04, out double parsedInfo04))
+            if (cbexercise.SelectedItem?.ToString() == "Cardio")
             {
-                MessageBox.Show("Incorrect parameters");
-                return;
-            }
-
-            if (cbexercise.SelectedItem != null && cbexercise.SelectedItem.ToString() == "Cardio")
-            {
-                if (string.IsNullOrEmpty(info01))
-                {
-                    MessageBox.Show("For Cardio exercises, info01 must be a string value!");
-                    return;
-                }
-
                 CardioExercise cardio = new CardioExercise(date, parsedWeight, info01, parsedInfo02, parsedInfo03, parsedInfo04);
                 await SaveCardioExerciseToDatabase(cardio);
             }
@@ -161,14 +179,19 @@ namespace Project
             {
                 if (!int.TryParse(info01, out int parsedInfo01))
                 {
-                    MessageBox.Show("For other exercises, info01 must be an integer value!");
+                    MessageBox.Show("For Lifting exercises, working weight must be numeric!");
                     return;
                 }
-
                 LiftingExercise lifting = new LiftingExercise(date, parsedWeight, parsedInfo01, parsedInfo02, parsedInfo03, parsedInfo04, muscle);
                 await SaveLiftingExerciseToDatabase(lifting);
             }
         }
+
+
+
+
+
+
 
         private async Task SaveCardioExerciseToDatabase(CardioExercise cardio)
         {
@@ -227,5 +250,42 @@ namespace Project
             form2.ShowDialog();
             this.Close();
         }
+
+        private void cbmuscle_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbmuscle.SelectedItem == null)
+            {
+                return;
+            }
+
+            switch (cbmuscle.SelectedItem.ToString())
+            {
+                case "Biceps":
+                    lblmode.Text = "Biceps";
+                    groupBox1.Enabled = true;
+                    break;
+
+                case "Triceps":
+                    lblmode.Text = "Triceps";
+                    groupBox1.Enabled = true;
+                    break;
+
+                case "Shoulders":
+                    lblmode.Text = "Shoulders";
+                    groupBox1.Enabled = true;
+                    break;
+
+                case "Back":
+                    lblmode.Text = "Back";
+                    groupBox1.Enabled = true;
+                    break;
+
+                case "Chest":
+                    lblmode.Text = "Chest";
+                    groupBox1.Enabled = true;
+                    break;
+            }
+        }
     }
 }
+

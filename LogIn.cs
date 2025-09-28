@@ -32,6 +32,9 @@ namespace Project
             FormStyle.ButtonStyle(btLogin);
             FormStyle.ButtonStyle(btExit);
             FormStyle.ApplyGradient(this, Color.DarkBlue, Color.LightBlue);
+
+
+
         }
 
         private void lbRegister_Click(object sender, EventArgs e)
@@ -123,6 +126,17 @@ namespace Project
             }
         }
 
+        private void LogIn_Load(object sender, EventArgs e)
+        {
+            Timer timer1 = new Timer();
+            this.Opacity = 0;
+            timer1.Tick += (s, d) =>
+            {
+                if (this.Opacity < 1) this.Opacity += 0.25;
+                else timer1.Stop();
+            };
+            timer1.Start();
+        }
     }
 }
 
