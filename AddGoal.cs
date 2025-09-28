@@ -24,17 +24,12 @@ namespace Project
             FormStyle.ButtonStyle(btBack);
             FormStyle.ButtonStyle(btAddCardio);
             FormStyle.ButtonStyle(btAddLifting);
+            FormStyle.ButtonStyle(btCheckGoals);
+            gbLifting.BackColor = Color.Transparent;
+            gbCardio.BackColor = Color.Transparent;
             FormStyle.ApplyGradient(this, Color.DarkBlue, Color.LightBlue);
             gbLifting.Enabled = false;
             gbCardio.Enabled = false;
-
-            btAddLifting.FlatStyle = FlatStyle.Flat;
-            btAddLifting.BackColor = Color.FromArgb(52, 152, 219); // основний колір
-            btAddLifting.ForeColor = Color.White;
-            btAddLifting.FlatAppearance.BorderSize = 0;
-
-            btAddLifting.MouseEnter += (s, e) => { btAddLifting.BackColor = Color.FromArgb(41, 128, 185); };
-            btAddLifting.MouseLeave += (s, e) => { btAddLifting.BackColor = Color.FromArgb(52, 152, 219); };
 
         }
 
@@ -177,6 +172,15 @@ namespace Project
             FormStyle.FadeOut(this);
             this.Hide();
             Menu form = new Menu();
+            form.ShowDialog();
+            this.Close();
+        }
+
+        private void btCheckGoals_Click(object sender, EventArgs e)
+        {
+            FormStyle.FadeOut(this);
+            this.Hide();
+            CheckGoals form = new CheckGoals();
             form.ShowDialog();
             this.Close();
         }

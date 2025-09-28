@@ -11,6 +11,7 @@ namespace Project
         public string goal {  get; set; }
         public int parameter { get; set; }
 
+
         public AddGoalClass(string goal, int parameter)
         {
             this.goal = goal;

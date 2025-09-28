@@ -45,13 +45,6 @@ namespace Project
         private void btsend_Click(object sender, EventArgs e)
         {
             addExercise();
-            tbdate.Text = "";
-            tbweight.Text = "";
-            tbinfo01.Text = "";
-            tbinfo02.Text = "";
-            tbinfo03.Text = "";
-            tbinfo04.Text = "";
-            cbexercise.SelectedIndex = -1;
             tbdate.Text = DateTime.Now.ToString("yyyy-MM-dd");
 
         }
@@ -174,6 +167,13 @@ namespace Project
             {
                 CardioExercise cardio = new CardioExercise(date, parsedWeight, info01, parsedInfo02, parsedInfo03, parsedInfo04);
                 await SaveCardioExerciseToDatabase(cardio);
+                tbdate.Text = "";
+                tbweight.Text = "";
+                tbinfo01.Text = "";
+                tbinfo02.Text = "";
+                tbinfo03.Text = "";
+                tbinfo04.Text = "";
+                cbexercise.SelectedIndex = -1;
             }
             else
             {
@@ -184,6 +184,13 @@ namespace Project
                 }
                 LiftingExercise lifting = new LiftingExercise(date, parsedWeight, parsedInfo01, parsedInfo02, parsedInfo03, parsedInfo04, muscle);
                 await SaveLiftingExerciseToDatabase(lifting);
+                tbdate.Text = "";
+                tbweight.Text = "";
+                tbinfo01.Text = "";
+                tbinfo02.Text = "";
+                tbinfo03.Text = "";
+                tbinfo04.Text = "";
+                cbexercise.SelectedIndex = -1;
             }
         }
 

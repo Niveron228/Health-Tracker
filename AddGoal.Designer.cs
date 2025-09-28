@@ -43,8 +43,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btBack = new System.Windows.Forms.Button();
             this.cbType = new System.Windows.Forms.ComboBox();
-            this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
-            this.cartesianChart1 = new LiveCharts.Wpf.CartesianChart();
+            this.btCheckGoals = new System.Windows.Forms.Button();
             this.gbLifting.SuspendLayout();
             this.gbCardio.SuspendLayout();
             this.SuspendLayout();
@@ -58,14 +57,15 @@
             this.gbLifting.Controls.Add(this.cbLiftingType);
             this.gbLifting.Location = new System.Drawing.Point(23, 122);
             this.gbLifting.Name = "gbLifting";
-            this.gbLifting.Size = new System.Drawing.Size(398, 179);
+            this.gbLifting.Size = new System.Drawing.Size(398, 220);
             this.gbLifting.TabIndex = 0;
             this.gbLifting.TabStop = false;
             // 
             // btAddLifting
             // 
             this.btAddLifting.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btAddLifting.Location = new System.Drawing.Point(17, 119);
+            this.btAddLifting.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btAddLifting.Location = new System.Drawing.Point(17, 161);
             this.btAddLifting.Name = "btAddLifting";
             this.btAddLifting.Size = new System.Drawing.Size(375, 40);
             this.btAddLifting.TabIndex = 4;
@@ -120,7 +120,7 @@
             this.gbCardio.Controls.Add(this.label3);
             this.gbCardio.Controls.Add(this.label2);
             this.gbCardio.Controls.Add(this.cbCardioType);
-            this.gbCardio.Location = new System.Drawing.Point(23, 325);
+            this.gbCardio.Location = new System.Drawing.Point(23, 348);
             this.gbCardio.Name = "gbCardio";
             this.gbCardio.Size = new System.Drawing.Size(398, 179);
             this.gbCardio.TabIndex = 1;
@@ -129,6 +129,7 @@
             // btAddCardio
             // 
             this.btAddCardio.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btAddCardio.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btAddCardio.Location = new System.Drawing.Point(17, 132);
             this.btAddCardio.Name = "btAddCardio";
             this.btAddCardio.Size = new System.Drawing.Size(375, 38);
@@ -192,7 +193,7 @@
             // btBack
             // 
             this.btBack.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btBack.Location = new System.Drawing.Point(23, 557);
+            this.btBack.Location = new System.Drawing.Point(23, 639);
             this.btBack.Name = "btBack";
             this.btBack.Size = new System.Drawing.Size(398, 48);
             this.btBack.TabIndex = 4;
@@ -213,21 +214,23 @@
             this.cbType.TabIndex = 5;
             this.cbType.SelectedIndexChanged += new System.EventHandler(this.cbType_SelectedIndexChanged);
             // 
-            // elementHost1
+            // btCheckGoals
             // 
-            this.elementHost1.Location = new System.Drawing.Point(23, 44);
-            this.elementHost1.Name = "elementHost1";
-            this.elementHost1.Size = new System.Drawing.Size(200, 100);
-            this.elementHost1.TabIndex = 6;
-            this.elementHost1.Text = "elementHost1";
-            this.elementHost1.Child = this.cartesianChart1;
+            this.btCheckGoals.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btCheckGoals.Location = new System.Drawing.Point(23, 561);
+            this.btCheckGoals.Name = "btCheckGoals";
+            this.btCheckGoals.Size = new System.Drawing.Size(398, 42);
+            this.btCheckGoals.TabIndex = 6;
+            this.btCheckGoals.Text = "Check my goals";
+            this.btCheckGoals.UseVisualStyleBackColor = true;
+            this.btCheckGoals.Click += new System.EventHandler(this.btCheckGoals_Click);
             // 
             // AddGoal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(447, 637);
-            this.Controls.Add(this.elementHost1);
+            this.ClientSize = new System.Drawing.Size(447, 730);
+            this.Controls.Add(this.btCheckGoals);
             this.Controls.Add(this.cbType);
             this.Controls.Add(this.btBack);
             this.Controls.Add(this.label1);
@@ -262,7 +265,6 @@
         private System.Windows.Forms.ComboBox cbType;
         private System.Windows.Forms.Button btAddLifting;
         private System.Windows.Forms.Button btAddCardio;
-        private System.Windows.Forms.Integration.ElementHost elementHost1;
-        private LiveCharts.Wpf.CartesianChart cartesianChart1;
+        private System.Windows.Forms.Button btCheckGoals;
     }
 }

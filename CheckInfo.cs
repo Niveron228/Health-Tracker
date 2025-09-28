@@ -86,6 +86,8 @@ namespace Project
 
         private void dataGridStyle()
         {
+            dataGridView1.Enabled = false;
+            dataGridView2.Enabled = false;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
