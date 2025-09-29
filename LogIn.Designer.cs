@@ -43,10 +43,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(121, 9);
+            this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.label1.Font = new System.Drawing.Font("Mongolian Baiti", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(136, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(236, 32);
+            this.label1.Size = new System.Drawing.Size(193, 29);
             this.label1.TabIndex = 0;
             this.label1.Text = "Health Tracker";
             // 
@@ -54,10 +55,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label2.Font = new System.Drawing.Font("Mongolian Baiti", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(12, 155);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(136, 25);
+            this.label2.Size = new System.Drawing.Size(105, 23);
             this.label2.TabIndex = 1;
             this.label2.Text = "User name:";
             // 
@@ -65,10 +66,10 @@
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label3.Font = new System.Drawing.Font("Mongolian Baiti", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(12, 303);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(121, 25);
+            this.label3.Size = new System.Drawing.Size(97, 23);
             this.label3.TabIndex = 2;
             this.label3.Text = "Password:";
             // 
@@ -76,12 +77,13 @@
             // 
             this.lbRegister.AutoSize = true;
             this.lbRegister.BackColor = System.Drawing.Color.Transparent;
-            this.lbRegister.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lbRegister.Font = new System.Drawing.Font("Mongolian Baiti", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbRegister.ForeColor = System.Drawing.Color.Goldenrod;
             this.lbRegister.Location = new System.Drawing.Point(14, 389);
             this.lbRegister.Name = "lbRegister";
-            this.lbRegister.Size = new System.Drawing.Size(313, 18);
+            this.lbRegister.Size = new System.Drawing.Size(290, 16);
             this.lbRegister.TabIndex = 3;
-            this.lbRegister.Text = "No account? Click here to create one";
+            this.lbRegister.Text = "* No account? Click here to create one";
             this.lbRegister.Click += new System.EventHandler(this.lbRegister_Click);
             // 
             // tblogin

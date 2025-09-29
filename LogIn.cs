@@ -32,6 +32,10 @@ namespace Project
             FormStyle.ButtonStyle(btLogin);
             FormStyle.ButtonStyle(btExit);
             FormStyle.ApplyGradient(this, Color.DarkBlue, Color.LightBlue);
+            FormStyle.RoundButton(btLogin);
+            FormStyle.RoundButton(btExit);
+            FormStyle.RoundTextBox(tblogin);
+            FormStyle.RoundTextBox(tbpassword);
 
 
 
@@ -49,7 +53,9 @@ namespace Project
         private async void btLogin_Click(object sender, EventArgs e)
         {
             await userLogin();
+            
         }
+
 
         private async Task userLogin()
         {

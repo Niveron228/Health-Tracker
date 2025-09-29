@@ -13,6 +13,9 @@ using System.Drawing.Drawing2D;
 using System.Windows.Forms.DataVisualization.Charting;
 
 
+
+
+
 namespace Project
 {
     public partial class CheckInfo : Form
@@ -24,6 +27,8 @@ namespace Project
             dataGridStyle();
             FormStyle.ButtonStyle(btExit);
             FormStyle.ButtonStyle(btBack);
+            FormStyle.RoundButton(btExit);
+            FormStyle.RoundButton(btBack);
             Load += async (sender, e) =>
             {
                 await LoadLiftingData();

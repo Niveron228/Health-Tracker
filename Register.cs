@@ -9,6 +9,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 using System.Windows.Forms;
 
 namespace Project
@@ -22,6 +23,12 @@ namespace Project
             FormStyle.ButtonStyle(btRegister);
             FormStyle.ButtonStyle(btBack);
             FormStyle.ButtonStyle(btExit);
+            FormStyle.RoundButton(btRegister);
+            FormStyle.RoundButton(btBack);
+            FormStyle.RoundButton(btExit);
+            FormStyle.RoundTextBox(tbpassword);
+            FormStyle.RoundTextBox(tblogin);
+            FormStyle.RoundTextBox(tbemail);
             FormStyle.ApplyGradient(this, Color.DarkBlue, Color.LightBlue);
         }
 

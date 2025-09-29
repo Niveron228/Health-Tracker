@@ -20,6 +20,7 @@ namespace Project
             InitializeComponent();
             FormStyle.ApplyGradient(this, Color.DarkBlue, Color.LightBlue);
             FormStyle.ButtonStyle(btBack);
+            FormStyle.RoundButton(btBack);
             chbDelete.Visible = false;
             lblComplete.Visible = false;
             pbComplete.Visible = false;

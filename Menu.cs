@@ -8,6 +8,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 using System.Windows.Forms;
 
 
@@ -25,6 +26,11 @@ namespace Project
             FormStyle.ButtonStyle(btGoal);
             FormStyle.ButtonStyle(btExit);
             FormStyle.ButtonStyle(btCheckGoals);
+            FormStyle.RoundButton(btAddInfo);
+            FormStyle.RoundButton(btCheckGoals);
+            FormStyle.RoundButton(btExit);
+            FormStyle.RoundButton(btShowProgress);
+            FormStyle.RoundButton(btGoal);
             FormStyle.ApplyGradient(this, Color.DarkBlue, Color.LightBlue);
         }
 

@@ -28,6 +28,15 @@ namespace Project
             FormStyle.ButtonStyle(btsend);
             FormStyle.ButtonStyle(btexit);
             FormStyle.ButtonStyle(btback);
+            FormStyle.RoundButton(btsend);
+            FormStyle.RoundButton(btexit);
+            FormStyle.RoundButton(btback);
+            FormStyle.RoundTextBox(tbdate);
+            FormStyle.RoundTextBox(tbinfo01);
+            FormStyle.RoundTextBox(tbinfo02);
+            FormStyle.RoundTextBox(tbinfo03);
+            FormStyle.RoundTextBox(tbinfo04);
+            FormStyle.RoundTextBox(tbweight);
             lblmuscle.Visible = false;
             cbmuscle.Visible = false;
             groupBox1.Enabled = false;
